@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "286242138487",
+    "project_id": "agenda-app-dd5da",
+    "storage_bucket": "agenda-app-dd5da.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:286242138487:android:673ab2ac8c61e60bf31972",
+        "android_client_info": {
+          "package_name": "com.marcmeller.agenda_online"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "286242138487-uuad6nulqj6mvo2gvf08gbo68u6htmj3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.marcmeller.agenda_online",
+            "certificate_hash": "445347efc084eb948c9dbd8a6b4d12d62dbc2944"
+          }
+        },
+        {
+          "client_id": "286242138487-utll9k5qbrr9laa8kva236gg0l8qapi7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqlKS5BBq5HCS5THRU6QuFjZlnKLREClY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "286242138487-utll9k5qbrr9laa8kva236gg0l8qapi7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
