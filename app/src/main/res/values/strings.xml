@@ -14,14 +14,23 @@
     <string name="RegistrarUsuario">Registrar</string>
     <string name="TengounacuentaTXT">Tengo una cuenta</string>
 
-    <!--MENU PRINCIPAL-->
-    <string name="CerrarSesion">Salir</string>
-
     <!--ACTIVIDAD LOGIN-->
     <string name="IniciarSesionTXT">Iniciar sesion</string>
     <string name="CorreoLogin">Correo</string>
     <string name="PassLoging">Contraseña</string>
     <string name="Btn_Logeo">Ingresar</string>
     <string name="UsuarionuevoTXT">¿Eres nuevo? Registrate aquí</string>
+
+    <!--MENÚ PRINCIPAL-->
+    <string name="BinvenidoPrincipal">Bienvenid@</string>
+    <string name="NombresPrincipal"> -- </string>
+    <string name="CorreoPrincipal"> -- </string>
+
+    <string name="AgregarNotas">Agregar</string>
+    <string name="ListarNotas">Mis Notas</string>
+    <string name="Archivados">Archivados</string>
+    <string name="Perfil">Pefil</string>
+    <string name="AcercaDe">Acerca De</string>
+    <string name="CerrarSesion">Salir</string>
 
 </resources>
