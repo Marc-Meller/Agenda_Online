@@ -23,13 +23,14 @@
 
     <!--MENÚ PRINCIPAL-->
     <string name="BinvenidoPrincipal">Bienvenid@</string>
+    <string name="UidPrincipal"> -- </string>
     <string name="NombresPrincipal"> -- </string>
     <string name="CorreoPrincipal"> -- </string>
 
     <string name="AgregarNotas">Agregar</string>
     <string name="ListarNotas">Mis Notas</string>
     <string name="Archivados">Archivados</string>
-    <string name="Perfil">Pefil</string>
+    <string name="Perfil">Perfil</string>
     <string name="AcercaDe">Acerca De</string>
     <string name="CerrarSesion">Salir</string>
 

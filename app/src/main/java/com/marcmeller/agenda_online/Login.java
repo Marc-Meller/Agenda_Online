@@ -67,7 +67,7 @@ public class Login extends AppCompatActivity {
 
         UsuarionuevoTXT.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 startActivity(new Intent(Login.this, Registro.class));
             }
         });

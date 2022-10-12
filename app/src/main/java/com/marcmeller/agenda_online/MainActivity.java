@@ -21,14 +21,14 @@ public class MainActivity extends AppCompatActivity {
 
         Btn_Login.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, Login.class));
             }
         });
 
         Btn_Registro.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, Registro.class));
             }
         });
