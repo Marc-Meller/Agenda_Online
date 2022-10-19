@@ -19,7 +19,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
+import com.marcmeller.agenda_online.AgregarNota.Agregar_Nota;
+import com.marcmeller.agenda_online.ListarNotas.Listar_Notas;
+import com.marcmeller.agenda_online.NotasArchivadas.Notas_Archivadas;
+import com.marcmeller.agenda_online.Perfil.Perfil_Usuario;
 
 
 public class MenuPrincipal extends AppCompatActivity {
@@ -61,7 +64,53 @@ public class MenuPrincipal extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
 
+        AgregarNotas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                //Obtener una copia de la informacion de los TextView
+                String uid_usuario = UidPrincipal.getText().toString();
+                String correo_usuario = CorreoPrincipal.getText().toString();
+
+                //Pasamos a la siguiente actividad
+                Intent intent = new Intent(MenuPrincipal.this, Agregar_Nota.class);
+                intent.putExtra("Uid",uid_usuario);
+                intent.putExtra("Correo",correo_usuario);
+                startActivity(intent);
+
+            }
+        });
+
+        ListarNotas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MenuPrincipal.this, Listar_Notas.class));
+                Toast.makeText(MenuPrincipal.this, "Listar Notas", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Archivados.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MenuPrincipal.this, Notas_Archivadas.class));
+                Toast.makeText(MenuPrincipal.this, "Notas Archivadas", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Perfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MenuPrincipal.this, Perfil_Usuario.class));
+                Toast.makeText(MenuPrincipal.this, "Perfil Usuario", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        AcercaDe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MenuPrincipal.this, "Acerca De", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         CerrarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
