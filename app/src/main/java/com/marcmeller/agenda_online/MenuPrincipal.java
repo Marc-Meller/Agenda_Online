@@ -3,6 +3,7 @@ package com.marcmeller.agenda_online;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.LinearLayoutCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,6 +37,8 @@ public class MenuPrincipal extends AppCompatActivity {
     TextView UidPrincipal, NombresPrincipal, CorreoPrincipal;
     ProgressBar progressBarDatos;
 
+    LinearLayoutCompat Linear_Nombres, Linear_Correo;
+
     DatabaseReference Usuarios;
 
 
@@ -51,6 +54,8 @@ public class MenuPrincipal extends AppCompatActivity {
         CorreoPrincipal = findViewById(R.id.CorreoPrincipal);
         progressBarDatos = findViewById(R.id.progressBarDatos);
 
+        Linear_Nombres = findViewById(R.id.Linear_Nombres);
+        Linear_Correo = findViewById(R.id.Linear_Correo);
 
         AgregarNotas = findViewById(R.id.AgregarNotas);
         ListarNotas = findViewById(R.id.ListarNotas);
@@ -147,9 +152,9 @@ public class MenuPrincipal extends AppCompatActivity {
                     progressBarDatos.setVisibility(View.GONE);
 
                     //Los TextView se muestran
-                    UidPrincipal.setVisibility(View.VISIBLE);
-                    NombresPrincipal.setVisibility(View.VISIBLE);
-                    CorreoPrincipal.setVisibility(View.VISIBLE);
+                    /*UidPrincipal.setVisibility(View.VISIBLE);NombresPrincipal.setVisibility(View.VISIBLE);CorreoPrincipal.setVisibility(View.VISIBLE);*/
+                    Linear_Nombres.setVisibility(View.VISIBLE);
+                    Linear_Correo.setVisibility(View.VISIBLE);
 
                     //Obtener los datos
                     String uid = "" +snapshot.child("uid").getValue();
