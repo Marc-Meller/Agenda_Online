@@ -26,6 +26,7 @@
     <string name="UidPrincipal"> -- </string>
     <string name="NombresPrincipal"> -- </string>
     <string name="CorreoPrincipal"> -- </string>
+    <string name="EstadoCuentaPrincipal">No verificado</string>
 
     <string name="AgregarNotas">Agregar</string>
     <string name="ListarNotas">Mis Notas</string>
@@ -37,6 +38,7 @@
     <!--AGREGAR NOTA-->
     <string name="Uid_Usuario">Uid del usuario</string>
     <string name="Correo_Usuario">Correo de usuario</string>
+    <string name="Fecha_hora_actual_TXT">Fecha de registro</string>
     <string name="Fecha_hora_actual">Fecha y hora actual</string>
     <string name="Titulo">Título</string>
     <string name="Descripcion">Descripcion</string>
@@ -80,5 +82,23 @@
         <item>"No finalizado</item>
         <item>"Finalizado</item>
     </string-array>
+
+    <!--DETALLE NOTA-->
+    <string name="Id_nota_Detalle_TXT">Id de la nota: </string>
+    <string name="Uid_usuario_Detalle_TXT">Uid del usuario: </string>
+    <string name="Correo_Detalle_TXT">Correo del usuario: </string>
+    <string name="Titulo_Detalle_TXT">Titulo: </string>
+    <string name="Descripcion_Detalle_TXT">Descripcion: </string>
+    <string name="Fecha_Registro_Detalle_TXT">Fecha de registro: </string>
+    <string name="Fecha_Nota_Detalle_TXT">Fecha de la nota: </string>
+    <string name="Estado_Detalle_TXT">Estado de la nota: </string>
+    <string name="Id_nota_Detalle">Id nota</string>
+    <string name="Uid_usuario_Detalle">Uid usuario</string>
+    <string name="Correo_Detalle">Correo usuario</string>
+    <string name="Titulo_Detalle">Titulo</string>
+    <string name="Descripcion_Detalle">Descripcion</string>
+    <string name="Fecha_Registro_Detalle">Fecha registro</string>
+    <string name="Fecha_Nota_Detalle">Fecha nota</string>
+    <string name="Estado_Detalle">Estado</string>
 
 </resources>

@@ -2,8 +2,12 @@ package com.marcmeller.agenda_online;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.LinearLayoutCompat;
 
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +16,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -34,7 +40,11 @@ public class MenuPrincipal extends AppCompatActivity {
     FirebaseUser user;
 
     TextView UidPrincipal, NombresPrincipal, CorreoPrincipal;
+    Button EstadoCuentaPrincipal;
     ProgressBar progressBarDatos;
+    ProgressDialog progressDialog;
+
+    LinearLayoutCompat Linear_Nombres, Linear_Correo, Linear_Verificacion;
 
     DatabaseReference Usuarios;
 
@@ -49,8 +59,16 @@ public class MenuPrincipal extends AppCompatActivity {
         UidPrincipal = findViewById(R.id.UidPrincipal);
         NombresPrincipal = findViewById(R.id.NombresPrincipal);
         CorreoPrincipal = findViewById(R.id.CorreoPrincipal);
+        EstadoCuentaPrincipal = findViewById(R.id.EstadoCuentaPrincipal);
         progressBarDatos = findViewById(R.id.progressBarDatos);
 
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Espere por favor ...");
+        progressDialog.setCanceledOnTouchOutside(false);
+
+        Linear_Nombres = findViewById(R.id.Linear_Nombres);
+        Linear_Correo = findViewById(R.id.Linear_Correo);
+        Linear_Verificacion = findViewById(R.id.Linear_Verificacion);
 
         AgregarNotas = findViewById(R.id.AgregarNotas);
         ListarNotas = findViewById(R.id.ListarNotas);
@@ -63,6 +81,20 @@ public class MenuPrincipal extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
+
+        EstadoCuentaPrincipal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (user.isEmailVerified()){
+                    //Cuenta verificada
+                    Toast.makeText(MenuPrincipal.this, "Cuenta ya verificada", Toast.LENGTH_SHORT).show();
+                }else{
+                    //Cuenta no verificada
+                    VerificarCuentaCorreo();
+                }
+
+            }
+        });
 
         AgregarNotas.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,6 +152,60 @@ public class MenuPrincipal extends AppCompatActivity {
         });
     }
 
+    private void VerificarCuentaCorreo() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Verificar cuenta")
+                .setMessage("¿Estás segur@ de enviar verificacion mediante correo electronico? "
+                +user.getEmail())
+                .setPositiveButton("Enviar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        EnviarCorreoAVerificacion();
+                    }
+                })
+                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(MenuPrincipal.this, "Cancelado por el usuario", Toast.LENGTH_SHORT).show();
+                    }
+                }).show();
+
+    }
+
+    private void EnviarCorreoAVerificacion() {
+        progressDialog.setMessage("Enviando correo de verificacion "+ user.getEmail());
+        progressDialog.show();
+
+        user.sendEmailVerification()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        //Envio exitoso
+                        progressDialog.dismiss();
+                        Toast.makeText(MenuPrincipal.this, "Correo enviado, revise su bandeja "+user.getEmail(), Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        //Fallo al enviar
+                        Toast.makeText(MenuPrincipal.this, "Error al enviar: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+    }
+
+    private void VerificarEstadoDeCuenta(){
+        String Verificado = "Verificado";
+        String No_Verificado = "No Verificado";
+        if (user.isEmailVerified()) {
+            EstadoCuentaPrincipal.setText(Verificado);
+        }else{
+            EstadoCuentaPrincipal.setText(No_Verificado);
+        }
+    }
+
     @Override
     protected void onStart() {
         ComprobarInicioSesion();
@@ -137,6 +223,9 @@ public class MenuPrincipal extends AppCompatActivity {
     }
 
     private void CargaDeDatos(){
+
+        VerificarEstadoDeCuenta();
+
         Usuarios.child(user.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -147,9 +236,10 @@ public class MenuPrincipal extends AppCompatActivity {
                     progressBarDatos.setVisibility(View.GONE);
 
                     //Los TextView se muestran
-                    UidPrincipal.setVisibility(View.VISIBLE);
-                    NombresPrincipal.setVisibility(View.VISIBLE);
-                    CorreoPrincipal.setVisibility(View.VISIBLE);
+                    /*UidPrincipal.setVisibility(View.VISIBLE);NombresPrincipal.setVisibility(View.VISIBLE);CorreoPrincipal.setVisibility(View.VISIBLE);*/
+                    Linear_Nombres.setVisibility(View.VISIBLE);
+                    Linear_Correo.setVisibility(View.VISIBLE);
+                    Linear_Verificacion.setVisibility(View.VISIBLE);
 
                     //Obtener los datos
                     String uid = "" +snapshot.child("uid").getValue();

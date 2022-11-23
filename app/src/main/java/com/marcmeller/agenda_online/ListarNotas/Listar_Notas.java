@@ -28,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.marcmeller.agenda_online.ActualizarNota.Actualizar_Nota;
+import com.marcmeller.agenda_online.Detalle.Detalle_Nota;
 import com.marcmeller.agenda_online.Objetos.Nota;
 import com.marcmeller.agenda_online.R;
 import com.marcmeller.agenda_online.ViewHolder.ViewHolder_Nota;
@@ -105,7 +106,29 @@ public class Listar_Notas extends AppCompatActivity {
                 viewHolder_nota.setOnClickListerer(new ViewHolder_Nota.ClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        Toast.makeText(Listar_Notas.this, "on item click", Toast.LENGTH_SHORT).show();
+                        //startActivity(new Intent(Listar_Notas.this, Detalle_Nota.class));
+
+                        //Obtener los datos de la nota seleccionada
+                        String id_nota = getItem(position).getId_note();
+                        String uid_usuario = getItem(position).getUid_usuario();
+                        String corre_usuario = getItem(position).getCorreo_usuario();
+                        String fechas_registro = getItem(position).getFechas_hora_actual();
+                        String titulo = getItem(position).getTitulo();
+                        String descripcion = getItem(position).getDescripcion();
+                        String fecha_nota = getItem(position).getFecha_nota();
+                        String estado = getItem(position).getEstado();
+
+                        //Enviando los datos a la siguiente Actividad
+                        Intent intent = new Intent(Listar_Notas.this, Detalle_Nota.class);
+                        intent.putExtra("id_nota", id_nota);
+                        intent.putExtra("uid_usuario", uid_usuario);
+                        intent.putExtra("corre_usuario", corre_usuario);
+                        intent.putExtra("fechas_registro", fechas_registro);
+                        intent.putExtra("titulo", titulo);
+                        intent.putExtra("descripcion", descripcion);
+                        intent.putExtra("fecha_nota", fecha_nota);
+                        intent.putExtra("estado", estado);
+                        startActivity(intent);
                     }
 
                     @Override
