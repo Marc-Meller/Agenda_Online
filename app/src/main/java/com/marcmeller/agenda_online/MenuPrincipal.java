@@ -9,6 +9,7 @@ import androidx.appcompat.widget.LinearLayoutCompat;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -27,14 +28,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.marcmeller.agenda_online.AgregarNota.Agregar_Nota;
 import com.marcmeller.agenda_online.ListarNotas.Listar_Notas;
-import com.marcmeller.agenda_online.NotasArchivadas.Notas_Archivadas;
+import com.marcmeller.agenda_online.NotasImportantes.Notas_Importantes;
 import com.marcmeller.agenda_online.Perfil.Perfil_Usuario;
 
 
 public class MenuPrincipal extends AppCompatActivity {
 
 
-    Button AgregarNotas, ListarNotas, Archivados, Perfil, AcercaDe, CerrarSesion;
+    Button AgregarNotas, ListarNotas, Importantes, Perfil, AcercaDe, CerrarSesion;
 
     FirebaseAuth firebaseAuth;
     FirebaseUser user;
@@ -72,7 +73,7 @@ public class MenuPrincipal extends AppCompatActivity {
 
         AgregarNotas = findViewById(R.id.AgregarNotas);
         ListarNotas = findViewById(R.id.ListarNotas);
-        Archivados = findViewById(R.id.Archivados);
+        Importantes = findViewById(R.id.Importantes);
         Perfil = findViewById(R.id.Perfil);
         AcercaDe = findViewById(R.id.AcercaDe);
         Usuarios = FirebaseDatabase.getInstance().getReference("Usuarios");
@@ -121,10 +122,10 @@ public class MenuPrincipal extends AppCompatActivity {
             }
         });
 
-        Archivados.setOnClickListener(new View.OnClickListener() {
+        Importantes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MenuPrincipal.this, Notas_Archivadas.class));
+                startActivity(new Intent(MenuPrincipal.this, Notas_Importantes.class));
                 Toast.makeText(MenuPrincipal.this, "Notas Archivadas", Toast.LENGTH_SHORT).show();
             }
         });
@@ -201,8 +202,10 @@ public class MenuPrincipal extends AppCompatActivity {
         String No_Verificado = "No Verificado";
         if (user.isEmailVerified()) {
             EstadoCuentaPrincipal.setText(Verificado);
+            EstadoCuentaPrincipal.setBackgroundColor(Color.rgb(46, 204, 113));
         }else{
             EstadoCuentaPrincipal.setText(No_Verificado);
+            EstadoCuentaPrincipal.setBackgroundColor(Color.rgb(225, 127, 41));
         }
     }
 
@@ -255,7 +258,7 @@ public class MenuPrincipal extends AppCompatActivity {
 
                     AgregarNotas.setEnabled(true);
                     ListarNotas.setEnabled(true);
-                    Archivados.setEnabled(true);
+                    Importantes.setEnabled(true);
                     Perfil.setEnabled(true);
                     AcercaDe.setEnabled(true);
                     CerrarSesion.setEnabled(true);

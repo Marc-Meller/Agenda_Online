@@ -259,8 +259,8 @@
                         android:src="@drawable/archivados"/>
 
                     <Button
-                        android:id="@+id/Archivados"
-                        android:text="@string/Archivados"
+                        android:id="@+id/Importantes"
+                        android:text="@string/Importantes"
                         android:enabled="false"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -338,27 +338,26 @@
 
                 <!--OPCION 6-->
                 <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_margin="5dp"
-                    android:orientation="vertical"
-                    android:gravity="center">
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:src="@drawable/salir"/>
+                        android:src="@drawable/salir" />
 
                     <Button
                         android:id="@+id/CerrarSesion"
-                        android:text="@string/CerrarSesion"
-                        android:enabled="false"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:fontFamily="@font/worksans"/>
-
+                        android:enabled="false"
+                        android:fontFamily="@font/worksans"
+                        android:text="@string/CerrarSesion" />
 
 
                 </androidx.appcompat.widget.LinearLayoutCompat>

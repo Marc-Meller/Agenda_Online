@@ -48,7 +48,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".NotasArchivadas.Notas_Archivadas"
+            android:name=".NotasImportantes.Notas_Importantes"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
