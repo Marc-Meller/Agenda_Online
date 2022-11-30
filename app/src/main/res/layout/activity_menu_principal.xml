@@ -17,7 +17,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="180dp"
-            app:cardBackgroundColor="@color/colorCardView"
+            app:cardBackgroundColor="#C15139"
             app:cardUseCompatPadding="true"
             android:padding="0.2dp"
             app:cardCornerRadius="5dp">
@@ -34,7 +34,7 @@
                     android:layout_weight="1"
                     android:layout_gravity="center"
                     android:layout_marginStart="2dp"
-                    android:src="@drawable/imagen_perfil"/>
+                    android:src="@drawable/imagen_perfil_usuario"/>
 
                 <!--DATOS-->
                 <androidx.appcompat.widget.LinearLayoutCompat
@@ -286,8 +286,8 @@
                         android:src="@drawable/perfil"/>
 
                     <Button
-                        android:id="@+id/Perfil"
-                        android:text="@string/Perfil"
+                        android:id="@+id/Contactos"
+                        android:text="@string/Contactos"
                         android:enabled="false"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -311,7 +311,7 @@
 
                 <!--OPCION 5-->
                 <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_margin="5dp"

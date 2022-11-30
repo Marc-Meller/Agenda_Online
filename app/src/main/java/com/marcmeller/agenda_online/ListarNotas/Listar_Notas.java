@@ -12,6 +12,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -87,7 +90,7 @@ public class Listar_Notas extends AppCompatActivity {
             protected void onBindViewHolder(@NonNull ViewHolder_Nota viewHolder_nota , int position, @NonNull Nota nota) {
                 viewHolder_nota.SetearDatos(
                         getApplicationContext(),
-                        nota.getId_note(),
+                        nota.getId_nota(),
                         nota.getUid_usuario(),
                         nota.getCorreo_usuario(),
                         nota.getFechas_hora_actual(),
@@ -109,7 +112,7 @@ public class Listar_Notas extends AppCompatActivity {
                         //startActivity(new Intent(Listar_Notas.this, Detalle_Nota.class));
 
                         //Obtener los datos de la nota seleccionada
-                        String id_nota = getItem(position).getId_note();
+                        String id_nota = getItem(position).getId_nota();
                         String uid_usuario = getItem(position).getUid_usuario();
                         String corre_usuario = getItem(position).getCorreo_usuario();
                         String fechas_registro = getItem(position).getFechas_hora_actual();
@@ -135,7 +138,7 @@ public class Listar_Notas extends AppCompatActivity {
                     public void onItemLongClick(View view, int position) {
 
                         //Obtener los datos de la nota seleccionada
-                        String id_nota = getItem(position).getId_note();
+                        String id_nota = getItem(position).getId_nota();
                         String uid_usuario = getItem(position).getUid_usuario();
                         String corre_usuario = getItem(position).getCorreo_usuario();
                         String fechas_registro = getItem(position).getFechas_hora_actual();
@@ -233,6 +236,56 @@ public class Listar_Notas extends AppCompatActivity {
             }
         });
 
+        builder.create().show();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_vaciar_todas_las_notas, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.Vaciar_Todas_las_Notas){
+            Vaciar_Registro_De_Notas();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void Vaciar_Registro_De_Notas() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(Listar_Notas.this);
+        builder.setTitle("Vaciar todos los registros");
+        builder.setMessage("¿Esta segur@ de eliminar todas las notas?");
+
+        builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //Elimiacion de todas las notas
+                Query query = BASE_DE_DATOS.orderByChild("uid_usuario").equalTo(user.getUid());
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot ds : snapshot.getChildren()){
+                            ds.getRef().removeValue();
+                        }
+                        Toast.makeText(Listar_Notas.this, "Todas las notas fueron eliminadas correctamente", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(Listar_Notas.this, "Accion Cancelada", Toast.LENGTH_SHORT).show();
+            }
+        });
         builder.create().show();
     }
 

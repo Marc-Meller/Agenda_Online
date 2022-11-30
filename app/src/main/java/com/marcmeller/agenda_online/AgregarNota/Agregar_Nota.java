@@ -141,12 +141,13 @@ public class Agregar_Nota extends AppCompatActivity {
         String descripcion = Descripcion.getText().toString();
         String fecha = Fecha.getText().toString();
         String estado = Estado.getText().toString();
+        String id_nota = BD_Firebase.push().getKey();
 
         //Validar datos
         if(!uid_usuario.equals("") && !correo_usario.equals("") && !fecha_hora_actual.equals("") &&
                 !titulo.equals("") && !descripcion.equals("") && !fecha.equals("") && !estado.equals("")){
 
-            Nota nota = new Nota(correo_usario+"/"+fecha_hora_actual,
+            Nota nota = new Nota(id_nota,
                     uid_usuario,
                     correo_usario,
                     fecha_hora_actual,
@@ -155,11 +156,11 @@ public class Agregar_Nota extends AppCompatActivity {
                     fecha,
                     estado);
 
-            String Nota_usuario = BD_Firebase.push().getKey();
+
             //Establecer el nombre de la BD
             String Nombre_BD = "Notas_Publicadas";
 
-            BD_Firebase.child(Nombre_BD).child(Nota_usuario).setValue(nota);
+            BD_Firebase.child(Nombre_BD).child(id_nota).setValue(nota);
             Toast.makeText(this, "¡Se agrego la nota existosamente!", Toast.LENGTH_SHORT).show();
             onBackPressed();
 

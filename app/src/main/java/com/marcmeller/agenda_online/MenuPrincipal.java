@@ -6,11 +6,15 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.LinearLayoutCompat;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -35,7 +39,7 @@ import com.marcmeller.agenda_online.Perfil.Perfil_Usuario;
 public class MenuPrincipal extends AppCompatActivity {
 
 
-    Button AgregarNotas, ListarNotas, Importantes, Perfil, AcercaDe, CerrarSesion;
+    Button AgregarNotas, ListarNotas, Importantes, Contactos, AcercaDe, CerrarSesion;
 
     FirebaseAuth firebaseAuth;
     FirebaseUser user;
@@ -49,19 +53,23 @@ public class MenuPrincipal extends AppCompatActivity {
 
     DatabaseReference Usuarios;
 
+    Dialog dialog_cuenta_verificada;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Agenda Online");
+        actionBar.setTitle("");
 
         UidPrincipal = findViewById(R.id.UidPrincipal);
         NombresPrincipal = findViewById(R.id.NombresPrincipal);
         CorreoPrincipal = findViewById(R.id.CorreoPrincipal);
         EstadoCuentaPrincipal = findViewById(R.id.EstadoCuentaPrincipal);
         progressBarDatos = findViewById(R.id.progressBarDatos);
+
+        dialog_cuenta_verificada = new Dialog(this);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Espere por favor ...");
@@ -74,7 +82,7 @@ public class MenuPrincipal extends AppCompatActivity {
         AgregarNotas = findViewById(R.id.AgregarNotas);
         ListarNotas = findViewById(R.id.ListarNotas);
         Importantes = findViewById(R.id.Importantes);
-        Perfil = findViewById(R.id.Perfil);
+        Contactos = findViewById(R.id.Contactos);
         AcercaDe = findViewById(R.id.AcercaDe);
         Usuarios = FirebaseDatabase.getInstance().getReference("Usuarios");
         CerrarSesion = findViewById(R.id.CerrarSesion);
@@ -88,7 +96,8 @@ public class MenuPrincipal extends AppCompatActivity {
             public void onClick(View v) {
                 if (user.isEmailVerified()){
                     //Cuenta verificada
-                    Toast.makeText(MenuPrincipal.this, "Cuenta ya verificada", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(MenuPrincipal.this, "Cuenta ya verificada", Toast.LENGTH_SHORT).show();
+                    AnimacionCuentaVerificada();
                 }else{
                     //Cuenta no verificada
                     VerificarCuentaCorreo();
@@ -130,11 +139,11 @@ public class MenuPrincipal extends AppCompatActivity {
             }
         });
 
-        Perfil.setOnClickListener(new View.OnClickListener() {
+        Contactos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MenuPrincipal.this, Perfil_Usuario.class));
-                Toast.makeText(MenuPrincipal.this, "Perfil Usuario", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MenuPrincipal.this, "Contactos", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -172,6 +181,23 @@ public class MenuPrincipal extends AppCompatActivity {
                     }
                 }).show();
 
+    }
+
+    private void AnimacionCuentaVerificada(){
+        Button EntendidoVerificado;
+
+        dialog_cuenta_verificada.setContentView(R.layout.dialogo_cuenta_verificada);
+        EntendidoVerificado = dialog_cuenta_verificada.findViewById(R.id.EntendidoVerificado);
+
+        EntendidoVerificado.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog_cuenta_verificada.dismiss();
+            }
+        });
+
+        dialog_cuenta_verificada.show();
+        dialog_cuenta_verificada.setCanceledOnTouchOutside(false);
     }
 
     private void EnviarCorreoAVerificacion() {
@@ -259,7 +285,7 @@ public class MenuPrincipal extends AppCompatActivity {
                     AgregarNotas.setEnabled(true);
                     ListarNotas.setEnabled(true);
                     Importantes.setEnabled(true);
-                    Perfil.setEnabled(true);
+                    Contactos.setEnabled(true);
                     AcercaDe.setEnabled(true);
                     CerrarSesion.setEnabled(true);
 
@@ -271,6 +297,21 @@ public class MenuPrincipal extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_principal,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.Perfil_usuario){
+            startActivity(new Intent(MenuPrincipal.this, Perfil_Usuario.class));
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void SalirApliacion() {

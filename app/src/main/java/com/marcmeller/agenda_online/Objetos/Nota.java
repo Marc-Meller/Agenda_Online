@@ -20,7 +20,7 @@ public class Nota {
         this.estado = estado;
     }
 
-    public String getId_note() {
+    public String getId_nota() {
         return id_nota;
     }
 
