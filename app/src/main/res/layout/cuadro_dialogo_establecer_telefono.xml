@@ -28,7 +28,7 @@
             android:textColorHint="#5D6D7E"
             android:hint="@string/Establecer_Telefono"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="wrap_content"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

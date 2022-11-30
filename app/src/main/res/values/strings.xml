@@ -139,5 +139,10 @@
     <string name="Domicilio_Perfil">Domicilio</string>
     <string name="Institucion_Perfil">Institucion</string>
     <string name="Profesion_Perfil">Profesion</string>
+    <string name="Fecha_Nacimiento_Perfil">Fecha de nac.</string>
     <string name="Guardar_Datos">Guardar Datos</string>
+
+    <!-- PERFIL USUARIO - IMAGEN -->
+    <string name="BtnElegirImagenDe">Elegir imagen de</string>
+    <string name="BtnActualizarImagen">Actualizar Imagen</string>
 </resources>

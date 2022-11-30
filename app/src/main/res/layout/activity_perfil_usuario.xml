@@ -31,9 +31,19 @@
                 android:layout_height="140dp"
                 android:background="#E55100"
                 android:layout_marginTop="120dp"
-                android:layout_marginStart="15dp"
+                android:layout_marginStart="20dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/imagen_perfil_usuario"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/Editar_imagen"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="130dp"
+                android:layout_marginTop="230dp"
+                android:src="@drawable/editar_imagen_perfil">
+
+            </androidx.appcompat.widget.AppCompatImageView>
 
 
         </RelativeLayout>
@@ -43,7 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="15dp">
+            android:padding="20dp">
 
             <!--Correo-->
             <TextView
@@ -65,7 +75,7 @@
                 android:textSize="18sp"
                 android:drawableStart="@drawable/icono_uid_perfil_usuario"
                 android:drawablePadding="5dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:textStyle="bold"
                 android:fontFamily="@font/worksans"
                 android:layout_marginStart="5dp"
@@ -77,7 +87,7 @@
                 android:id="@+id/Nombres_Perfil"
                 android:hint="@string/Nombres_Perfil"
                 android:inputType="textPersonName"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:fontFamily="@font/worksans"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -154,12 +164,37 @@
                     android:id="@+id/Editar_Telefono"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:layout_marginStart="5dp"
+                    android:layout_marginStart="15dp"
                     android:src="@drawable/editar_telefono"
                     />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+                
+                <TextView
+                    android:id="@+id/Fecha_Nacimiento_Perfil"
+                    android:text="@string/Fecha_Nacimiento_Perfil"
+                    android:fontFamily="@font/worksans"
+                    android:layout_gravity="center"
+                    android:textSize="18sp"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"/>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/Editar_fecha"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="15dp"
+                    android:src="@drawable/calendario">
+
+                </androidx.appcompat.widget.AppCompatImageView>
+                
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
 
             <!--Guardar Datos-->

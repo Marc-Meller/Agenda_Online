@@ -32,7 +32,7 @@
         android:id="@+id/EntendidoVerificado"
         android:text="@string/EntendidoVerificado"
         android:layout_marginTop="10dp"
-        app:icon="@drawable/icono_eliminar_cd"
+        app:icon="@drawable/verificacion_principal"
         android:layout_gravity="center"
         android:fontFamily="@font/worksans"
         android:layout_width="180dp"
