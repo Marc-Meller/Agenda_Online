@@ -183,7 +183,7 @@ public class Actualizar_Nota extends AppCompatActivity implements AdapterView.On
         DatabaseReference databaseReference = firebaseDatabase.getReference("Notas_Publicadas");
 
         //Consulta
-        Query query = databaseReference.orderByChild("id_note").equalTo(id_nota_R);
+        Query query = databaseReference.orderByChild("id_nota").equalTo(id_nota_R);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

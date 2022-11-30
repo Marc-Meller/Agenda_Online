@@ -157,7 +157,8 @@ public class Perfil_Usuario extends AppCompatActivity {
                 String codigo_pais = ccp.getSelectedCountryCodeWithPlus();
                 String telefono = Establecer_Telefono.getText().toString();
                 String codigo_pais_telefono = codigo_pais+telefono; //+52 99334000000
-                if (!Telefono_Perfil.equals("")) {
+
+                if (!telefono.equals("")) {
                     Telefono_Perfil.setText(codigo_pais_telefono);
                     dialog_establecer_telefono.dismiss();
                 }else{
