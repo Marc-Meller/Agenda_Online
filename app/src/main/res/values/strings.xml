@@ -52,6 +52,7 @@
     <string name="Vaciar_Todas_las_Notas">Vaciar todas las Notas</string>
     <string name="Perfil_usuario">Perfil del usuario</string>
     <string name="Actualizar_Pass">Actualizar pass</string>
+    <string name="Agregar_contacto">Agregar contacto</string>
 
     <!-- ITEM NOTA -->
     <string name="Id_nota_Item">Id nota</string>
@@ -87,8 +88,6 @@
     <string name="direccion_C_Item">Direccion</string>
 
 
-
-
     <!--CUADO DE DIALOGO OPCIONES-->
     <string name="ElijaOpcionTXT">Elija una opcion</string>
     <string name="CD_Eliminar">Eliminar</string>
@@ -112,6 +111,9 @@
     <string name="Btn_Elegir_Galeria">Galería</string>
     <string name="Btn_Elegir_Camara">Cámara</string>
 
+    <!--CUADRO DE DIALOGO - ELEGIR IMAGEN-->
+    <string name="ValidarTXT">Por favor complete el campo Nombre</string>
+    <string name="Btn_Validar_Registro_C">Entendido</string>
 
     <!--ACTUALIZAR NOTA-->
     <string name="Id_nota_A">Id nota</string>
@@ -175,4 +177,32 @@
     <string name="EtNuevoPass">Nueva contraseña</string>
     <string name="EtRNuevoPass">Repetir nueva contraseña</string>
     <string name="BtnActualizarPass">Actualizar</string>
+
+    <!--AGREGAR CONTACTO-->
+    <string name="Uid_Usuario_C">Mi uid</string>
+    <string name="Nombres_C">Nombres contacto</string>
+    <string name="Apellidos_C">Apellidos contacto</string>
+    <string name="Correo_C">Correo electrónico</string>
+    <string name="Telefono_C">Telefono</string>
+    <string name="Fecha_Nacimiento_C">Fecha de nac.</string>
+    <string name="Edad_C">Edad</string>
+    <string name="Institucion_C">Institucion</string>
+    <string name="Direccion_C">Dirección</string>
+    <string name="Btn_Agregar_Contacto">Guardar contacto</string>
+
+    <!--DETALLE CONTACTO-->
+    <string name="Id_C_D">Id</string>
+    <string name="Uid_Usuario_D">Uid usuario</string>
+    <string name="Nombres_C_D">Nombres</string>
+    <string name="Apellidos_C_D">Apellidos </string>
+    <string name="Correo_C_D">Correo electrónico</string>
+    <string name="Telefono_C_D">Telefono</string>
+    <string name="Fecha_Nacimiento_C_D">Fecha de nac.</string>
+    <string name="Edad_C_D">Edad</string>
+    <string name="Institucion_C_D">Institucion</string>
+    <string name="Direccion_C_D">Dirección</string>
+    <string name="Imagen_C_D">Imagen</string>
+    <string name="Btn_Actuizar_C">Actualizar</string>
+
+
 </resources>

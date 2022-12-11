@@ -31,6 +31,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.marcmeller.agenda_online.AgregarNota.Agregar_Nota;
+import com.marcmeller.agenda_online.Contactos.Listar_Contactos;
 import com.marcmeller.agenda_online.ListarNotas.Listar_Notas;
 import com.marcmeller.agenda_online.NotasImportantes.Notas_Importantes;
 import com.marcmeller.agenda_online.Perfil.Perfil_Usuario;
@@ -127,7 +128,7 @@ public class MenuPrincipal extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MenuPrincipal.this, Listar_Notas.class));
-                Toast.makeText(MenuPrincipal.this, "Listar Notas", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MenuPrincipal.this, "Listar Notas", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -135,15 +136,18 @@ public class MenuPrincipal extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MenuPrincipal.this, Notas_Importantes.class));
-                Toast.makeText(MenuPrincipal.this, "Notas Archivadas", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MenuPrincipal.this, "Notas Archivadas", Toast.LENGTH_SHORT).show();
             }
         });
 
         Contactos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MenuPrincipal.this, Perfil_Usuario.class));
-                Toast.makeText(MenuPrincipal.this, "Contactos", Toast.LENGTH_SHORT).show();
+                String uid_Usuario =UidPrincipal.getText().toString();
+                Intent intent = new Intent(MenuPrincipal.this, Listar_Contactos.class);
+                intent.putExtra("Uid", uid_Usuario);
+                startActivity(intent);
+                //Toast.makeText(MenuPrincipal.this, "Contactos", Toast.LENGTH_SHORT).show();
             }
         });
 

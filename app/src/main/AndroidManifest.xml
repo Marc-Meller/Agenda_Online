@@ -18,6 +18,27 @@
         android:theme="@style/Theme.Agenda_Online"
         tools:targetApi="31">
         <activity
+            android:name=".Contactos.Detalle_contacto"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Contactos.Agregar_Contacto"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Contactos.Listar_Contactos"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ActualizarPass.ActualizarPassUsuario"
             android:exported="false">
             <meta-data
