@@ -71,16 +71,12 @@ public class Agregar_Contacto extends AppCompatActivity {
 
         Editar_fecha_C.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Abrir_Calendario();
-            }
+            public void onClick(View v) {Abrir_Calendario();}
         });
 
         Btn_Agregar_Contacto.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                AgregarContacto();
-            }
+            public void onClick(View v) {AgregarContacto();}
         });
 
 

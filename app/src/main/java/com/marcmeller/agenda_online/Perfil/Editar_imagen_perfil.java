@@ -197,7 +197,7 @@ public class Editar_imagen_perfil extends AppCompatActivity {
 
                 if (ContextCompat.checkSelfPermission(Editar_imagen_perfil.this,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-                    SeleccinarImagenGaleria();
+                    SeleccionarImagenGaleria();
                     dialog_elegir_imagen.dismiss();
                 } else {
                     SolicitudPermisoGaleria.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE);
@@ -213,7 +213,7 @@ public class Editar_imagen_perfil extends AppCompatActivity {
                 //Toast.makeText(Editar_imagen_perfil.this, "Elegir de camara", Toast.LENGTH_SHORT).show();
                 if (ContextCompat.checkSelfPermission(Editar_imagen_perfil.this,
                         Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-                    SeleccinarImagenCamara();
+                    SeleccionarImagenCamara();
                     dialog_elegir_imagen.dismiss();
                 } else {
                     SolicitudPermisoCamara.launch(Manifest.permission.CAMERA);
@@ -227,7 +227,7 @@ public class Editar_imagen_perfil extends AppCompatActivity {
         dialog_elegir_imagen.setCanceledOnTouchOutside(true);
     }
 
-    private void SeleccinarImagenGaleria() {
+    private void SeleccionarImagenGaleria() {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
         galeriaActivityResultLauncher.launch(intent);
@@ -240,7 +240,7 @@ public class Editar_imagen_perfil extends AppCompatActivity {
                 @Override
                 public void onActivityResult(ActivityResult result) {
                     if (result.getResultCode() == Activity.RESULT_OK) {
-                        //Obtener uri de la iagen
+                        //Obtener uri de la imagen
                         Intent data = result.getData();
                         imagenUri = data.getData();
 
@@ -258,7 +258,7 @@ public class Editar_imagen_perfil extends AppCompatActivity {
     private ActivityResultLauncher<String> SolicitudPermisoGaleria =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
                 if (isGranted) {
-                    SeleccinarImagenGaleria();
+                    SeleccionarImagenGaleria();
                 } else {
                     Toast.makeText(this, "Permiso denegado", Toast.LENGTH_SHORT).show();
                 }
@@ -266,7 +266,7 @@ public class Editar_imagen_perfil extends AppCompatActivity {
             });
 
 
-    private void SeleccinarImagenCamara() {
+    private void SeleccionarImagenCamara() {
         ContentValues values = new ContentValues();
         values.put(MediaStore.Images.Media.TITLE, "Nueva imagen");
         values.put(MediaStore.Images.Media.DESCRIPTION, "Descripción de imagen");
@@ -297,7 +297,7 @@ public class Editar_imagen_perfil extends AppCompatActivity {
     private ActivityResultLauncher<String> SolicitudPermisoCamara =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGrated -> {
                 if (isGrated) {
-                    SeleccinarImagenCamara();
+                    SeleccionarImagenCamara();
                 } else {
                     Toast.makeText(this, "Permiso a camara denegado", Toast.LENGTH_SHORT).show();
                 }
