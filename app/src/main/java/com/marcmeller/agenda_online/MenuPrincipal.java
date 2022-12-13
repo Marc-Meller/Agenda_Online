@@ -17,10 +17,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -39,6 +41,7 @@ import com.marcmeller.agenda_online.Perfil.Perfil_Usuario;
 
 public class MenuPrincipal extends AppCompatActivity {
 
+    ImageView ImagenUsuario;
 
     Button AgregarNotas, ListarNotas, Importantes, Contactos, AcercaDe, CerrarSesion;
 
@@ -54,7 +57,7 @@ public class MenuPrincipal extends AppCompatActivity {
 
     DatabaseReference Usuarios;
 
-    Dialog dialog_cuenta_verificada;
+    Dialog dialog_cuenta_verificada, dialog_informacion;
 
 
     @Override
@@ -64,6 +67,7 @@ public class MenuPrincipal extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("");
 
+        ImagenUsuario = findViewById(R.id.ImagenUsuario);
         UidPrincipal = findViewById(R.id.UidPrincipal);
         NombresPrincipal = findViewById(R.id.NombresPrincipal);
         CorreoPrincipal = findViewById(R.id.CorreoPrincipal);
@@ -71,6 +75,7 @@ public class MenuPrincipal extends AppCompatActivity {
         progressBarDatos = findViewById(R.id.progressBarDatos);
 
         dialog_cuenta_verificada = new Dialog(this);
+        dialog_informacion = new Dialog(this);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Espere por favor ...");
@@ -154,7 +159,7 @@ public class MenuPrincipal extends AppCompatActivity {
         AcercaDe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MenuPrincipal.this, "Acerca De", Toast.LENGTH_SHORT).show();
+                Informacion();
             }
         });
 
@@ -202,6 +207,22 @@ public class MenuPrincipal extends AppCompatActivity {
 
         dialog_cuenta_verificada.show();
         dialog_cuenta_verificada.setCanceledOnTouchOutside(false);
+    }
+
+    private void Informacion(){
+        Button EntendidoInfo;
+
+        dialog_informacion.setContentView(R.layout.cuadro_dialogo_informacion);
+
+        EntendidoInfo = dialog_informacion.findViewById(R.id.EntendidoInfo);
+        EntendidoInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog_informacion.dismiss();
+            }
+        });
+        dialog_informacion.show();
+        dialog_informacion.setCanceledOnTouchOutside(false);
     }
 
     private void EnviarCorreoAVerificacion() {
@@ -278,6 +299,7 @@ public class MenuPrincipal extends AppCompatActivity {
                     String uid = "" +snapshot.child("uid").getValue();
                     String nombres = "" +snapshot.child("nombre").getValue();
                     String correo = ""+snapshot.child("correo").getValue();
+                    String imagen = ""+snapshot.child("imagen_perfil").getValue();
 
                     //Set datos en los respectios TextView
                     UidPrincipal.setText(uid);
@@ -293,6 +315,8 @@ public class MenuPrincipal extends AppCompatActivity {
                     AcercaDe.setEnabled(true);
                     CerrarSesion.setEnabled(true);
 
+                    ObtenerImagen(imagen);
+
                 }
             }
 
@@ -301,6 +325,16 @@ public class MenuPrincipal extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void ObtenerImagen(String imagen) {
+
+        try {
+            Glide.with(getApplicationContext()).load(imagen).placeholder(R.drawable.imagen_usuario).into(ImagenUsuario);
+        }catch (Exception e){
+            Glide.with(getApplicationContext()).load(R.drawable.imagen_usuario).into(ImagenUsuario);
+        }
+
     }
 
     @Override
